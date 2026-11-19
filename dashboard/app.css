@@ -45,6 +45,29 @@ h1 .thin { color: #93a1b5; font-weight: 400; }
 .rank1 b { color: #f5b544; }
 .rank1 .tag { color: #93a1b5; }
 
+/* Stat cards */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.stat {
+  background: #131e30;
+  border: 1px solid #24344d;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.stat b { display: block; font-size: 20px; color: #f5b544; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace; }
+.stat span { display: block; margin-top: 4px; color: #93a1b5; font-size: 12.5px; line-height: 1.35; }
+.formula {
+  margin: 12px 0 0;
+  color: #e8edf3;
+  font-size: 14px;
+  border-left: 2px solid #3ddc97;
+  padding-left: 12px;
+}
+
 /* Panels */
 .panel {
   background: #131e30;
@@ -66,6 +89,16 @@ h1 .thin { color: #93a1b5; font-weight: 400; }
 .judge strong { color: #3ddc97; }
 .note { color: #93a1b5; font-size: 13.5px; }
 .warn { color: #f5b544; }
+
+/* Verdicts */
+.verdict {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .04em;
+  border-radius: 4px; padding: 2px 6px; white-space: nowrap;
+}
+.verdict.v-farm { background: #3ddc97; color: #0d1420; }
+.verdict.v-marginal { border: 1px solid #f5b544; color: #f5b544; }
+.verdict.v-skip { border: 1px solid #5b6b82; color: #93a1b5; }
+.muted { color: #93a1b5; }
 
 /* Multiples table */
 table.mult { border-collapse: collapse; width: 100%; margin-top: 12px; font-size: 13px; }
@@ -123,11 +156,13 @@ table.board tbody tr { border-bottom: 1px solid #1a2942; }
 table.board tbody tr:nth-child(even) { background: #111b2c; }
 table.board tbody tr:hover { background: #1a2942; }
 table.board tbody tr.top1 { box-shadow: inset 2px 0 0 #f5b544; }
+table.board tbody tr.top1 td.rank { padding-left: 6px; }
 td.rank { color: #93a1b5; width: 44px; }
 td.name b { display: block; font-size: 14px; }
 td.name .slug { color: #93a1b5; font-size: 12px; }
 td.tvl, td.impl { white-space: nowrap; }
 td.impl { font-weight: 700; color: #f5b544; }
+.range { display: block; font-size: 11px; font-weight: 400; color: #93a1b5; margin-top: 2px; }
 .bar { height: 3px; background: #24344d; border-radius: 2px; margin-top: 4px; min-width: 48px; }
 .bar i { display: block; height: 3px; background: #f5b544; border-radius: 2px; }
 .up { color: #3ddc97; }
@@ -167,6 +202,18 @@ button.farm:hover { background: #3ddc97; color: #0d1420; }
 }
 .equation b { color: #f5b544; }
 .equation .lbl { color: #93a1b5; font-size: 12px; }
+
+/* Detail tables: derivation ladder, comparables, economics, verdict matrix */
+table.ladder, table.comp, table.econ, table.matrix { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 10px 0; }
+table.ladder td, table.comp td, table.econ td, table.matrix td, table.matrix th { padding: 7px 10px 7px 0; text-align: left; border-bottom: 1px solid #24344d; vertical-align: top; }
+table.ladder td.num, table.comp td.num, table.econ td.num, table.matrix td.num { text-align: right; white-space: nowrap; }
+table.ladder td:first-child { color: #93a1b5; }
+table.comp th, table.matrix th { color: #93a1b5; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; }
+table.comp td .slug { display: block; color: #93a1b5; font-size: 12px; }
+table.matrix td.m-farm { color: #3ddc97; }
+table.matrix td.m-marginal { color: #f5b544; }
+table.matrix td.m-skip { color: #93a1b5; }
+table.matrix .mv { display: block; font-size: 10.5px; letter-spacing: .04em; }
 .detail ol { margin: 10px 0; padding-left: 22px; }
 .detail ol li { margin-bottom: 10px; }
 .detail ol li::marker { color: #3ddc97; font-weight: 700; }
@@ -179,8 +226,12 @@ button.farm:hover { background: #3ddc97; color: #0d1420; }
 /* Footer */
 footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid #24344d; color: #93a1b5; font-size: 13.5px; }
 footer p { margin: 0 0 8px; }
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 720px) {
   h1 { font-size: 22px; }
   .count { margin-left: 0; }
   table.board thead th { top: 105px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
 }
